@@ -1,16 +1,19 @@
 package com.example.barutoapp.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.barutoapp.presentation.screens.home.HomeScreen
 import com.example.barutoapp.presentation.screens.splash.SplashScreen
 import com.example.barutoapp.presentation.screens.welcome.WelcomeScreen
 import com.example.barutoapp.util.Constants.DETAILS_ARGUMENTS_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalAnimationApi
 @ExperimentalPagerApi
 @Composable
 fun SetupNavGraph(navController: NavHostController){
@@ -25,7 +28,7 @@ fun SetupNavGraph(navController: NavHostController){
             WelcomeScreen(navController = navController)
         }
         composable(route = Screen.Home.route){
-
+            HomeScreen()
         }
         composable(
             route = Screen.Details.route,
