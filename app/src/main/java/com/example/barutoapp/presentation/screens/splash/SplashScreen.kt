@@ -1,5 +1,6 @@
 package com.example.barutoapp.presentation.screens.splash
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -27,15 +28,13 @@ import com.example.barutoapp.ui.theme.Purple700
 fun SplashScreen(
     navController: NavHostController,
     splashViewModel: SplashViewModel = hiltViewModel()
-){
+) {
 
     val onBoardingCompleted by splashViewModel.onBoardingCompleted.collectAsState()
 
-    val degrees = remember {
-       Animatable(0f)
-    }
-    
-    LaunchedEffect(key1 = true){
+    val degrees = remember { Animatable(0f) }
+
+    LaunchedEffect(key1 = true) {
         degrees.animateTo(
             targetValue = 360f,
             animationSpec = tween(
@@ -44,7 +43,7 @@ fun SplashScreen(
             )
         )
         navController.popBackStack()
-        if(onBoardingCompleted){
+        if (onBoardingCompleted) {
             navController.navigate(Screen.Home.route)
         } else {
             navController.navigate(Screen.Welcome.route)
@@ -52,12 +51,11 @@ fun SplashScreen(
     }
 
     Splash(degrees = degrees.value)
-
 }
 
 @Composable
-fun Splash(degrees: Float){
-    if(isSystemInDarkTheme()){
+fun Splash(degrees: Float) {
+    if (isSystemInDarkTheme()) {
         Box(
             modifier = Modifier
                 .background(Color.Black)
@@ -69,10 +67,7 @@ fun Splash(degrees: Float){
                 painter = painterResource(id = R.drawable.ic_logo),
                 contentDescription = stringResource(R.string.app_logo)
             )
-
         }
-
-
     } else {
         Box(
             modifier = Modifier
@@ -85,17 +80,21 @@ fun Splash(degrees: Float){
                 painter = painterResource(id = R.drawable.ic_logo),
                 contentDescription = stringResource(R.string.app_logo)
             )
-
         }
     }
 }
 
-@Preview
 @Composable
+@Preview
 fun SplashScreenPreview() {
     Splash(degrees = 0f)
 }
 
+@Composable
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+fun SplashScreenDarkPreview() {
+    Splash(degrees = 0f)
+}
 
 
 

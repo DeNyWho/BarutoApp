@@ -1,6 +1,5 @@
 package com.example.barutoapp.presentation.screens.splash
 
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.barutoapp.domain.use_cases.UseCases
@@ -21,7 +20,7 @@ class SplashViewModel @Inject constructor(
     val onBoardingCompleted: StateFlow<Boolean> = _onBoardingCompleted
 
     init {
-        viewModelScope.launch ( Dispatchers.IO ) {
+        viewModelScope.launch(Dispatchers.IO) {
             _onBoardingCompleted.value =
                 useCases.readOnBoardingUseCase().stateIn(viewModelScope).value
         }
