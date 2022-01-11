@@ -5,6 +5,7 @@ import com.example.barutoapp.data.repository.DataStoreOperationsImpl
 import com.example.barutoapp.data.repository.Repository
 import com.example.barutoapp.domain.repository.DataStoreOperations
 import com.example.barutoapp.domain.use_cases.UseCases
+import com.example.barutoapp.domain.use_cases.get_all_heroes.GetAllHeroesUseCase
 import com.example.barutoapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
 import com.example.barutoapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import dagger.Module
@@ -33,7 +34,8 @@ object RepositoryModule {
     ): UseCases {
         return UseCases(
             saveOnBoardingUseCase = SaveOnBoardingUseCase(repository = repository),
-            readOnBoardingUseCase = ReadOnBoardingUseCase(repository = repository)
+            readOnBoardingUseCase = ReadOnBoardingUseCase(repository = repository),
+            getAllHeroesUseCase = GetAllHeroesUseCase(repository = repository)
         )
     }
 
